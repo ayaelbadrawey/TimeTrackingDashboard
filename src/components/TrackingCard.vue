@@ -1,10 +1,19 @@
 <script setup>
 import { defineProps } from 'vue';
 const props = defineProps({
-  background: {
-    type: String,
-    default: '#3498db'
-  }
+    background: {
+        type: String,
+        default: '#3498db'
+    },
+    product: {
+        type: Object,
+        default: () => ({
+            category: '',
+            price: '',
+            title: '',
+            rating: {count: 0}
+        }),
+    }
 });
 
 const boxShadowStyle = {
@@ -14,7 +23,7 @@ const boxShadowStyle = {
 <template>
     <div class="tracking-card" :style="boxShadowStyle">
         <div class="category">
-            <span class="title">men's clothing</span>
+            <span class="title">{{ product.category }}</span>
             <svg fill="#D8D8D8" height="15px" width="15px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32.055 32.055" xml:space="preserve">
                 <g>
@@ -26,14 +35,13 @@ const boxShadowStyle = {
             </svg>
         </div>
         <div class="category-content">
-            <span class="price">109.95$</span>
+            <span class="price">{{product.price}}$</span>
             <div class="description-content">
-                <span class="description">Your perfect pack for everyday use and walks in the forest. Stash your laptop
-                    (up to 15 inches) in
-                    the padded sleeve, your everyday</span>
+                <span class="description">{{ product.title }}</span>
                 <div class="stock-content">
-                    <span>InStore</span>
-                    <span>120</span>
+                    <span v-if="product.rating.count > 0">InStore</span>
+                    <span v-else>OutOfStore</span>
+                    <span>{{product.rating.count}}</span>
                 </div>
             </div>
         </div>
@@ -90,7 +98,7 @@ const boxShadowStyle = {
                 font-size: 12px;
                 font-weight: 400;
                 line-height: 14.22px;
-                width: 170px;
+                width: 130px;
                 display: block;
                 color: #BBC0FF;
             }

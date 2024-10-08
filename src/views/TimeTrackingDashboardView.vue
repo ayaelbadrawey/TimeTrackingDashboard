@@ -1,20 +1,34 @@
 <script setup>
+import { computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
 import TrackingCard from '../components/TrackingCard.vue'
-const randColors = ['#FF8B64', '#55C2E6', '#FF5E7D', '#F1C75B', '#4BCF82', '#7335D2']
+
+const store = useStore();
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+onMounted(() => {
+    store.dispatch('fetchProducts');
+});
+
+const randColors = ['#FF8B64', '#55C2E6', '#FF5E7D', '#F1C75B', '#4BCF82', '#7335D2']
+
+const productList = computed(() => store.getters.getProducts);
+const isLoading = computed(() => store.getters.isLoading);
 </script>
 
 <template>
     <main>
-        <div class="container">
+        <span class="loading-spinner" v-if="isLoading">.</span>
+        <div v-else class="container">
             <div class="best-sales">
                 <TrackingCard />
             </div>
             <div class="tracking">
-                <TrackingCard :background="randColors[getRandomInt(0, 5)]"  v-for="i in 10"></TrackingCard>
+                <TrackingCard :background="randColors[getRandomInt(0, 5)]" v-for="product in productList"
+                    :key="product.id" :product="product"></TrackingCard>
             </div>
         </div>
     </main>
@@ -27,6 +41,26 @@ function getRandomInt(min, max) {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 100px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    padding: 20px 20px;
+    animation: spinner 1.5s infinite linear;
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 main {
