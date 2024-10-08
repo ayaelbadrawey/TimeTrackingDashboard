@@ -1,15 +1,20 @@
 <script setup>
 import TrackingCard from '../components/TrackingCard.vue'
+const randColors = ['#FF8B64', '#55C2E6', '#FF5E7D', '#F1C75B', '#4BCF82', '#7335D2']
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 </script>
 
 <template>
     <main>
         <div class="container">
             <div class="best-sales">
-                <TrackingCard />>
+                <TrackingCard />
             </div>
             <div class="tracking">
-                <TrackingCard v-for="i in 10"></TrackingCard>
+                <TrackingCard :background="randColors[getRandomInt(0, 5)]"  v-for="i in 10"></TrackingCard>
             </div>
         </div>
     </main>
