@@ -15,9 +15,9 @@
     </div>
     <div class="period">
         <div class="period-content">
-            <span>Daily</span>
-            <span class="active">Weekly</span>
-            <span>Monthly</span>
+            <button>Daily</button>
+            <button class="active">Weekly</button>
+            <button>Monthly</button>
         </div>
     </div>
 </template>
@@ -59,6 +59,7 @@
             text-align: left;
             color: #BBC0FF;
             margin-bottom: 10px;
+            
         }
 
         .best-sales-title {
@@ -95,11 +96,15 @@
         gap: 15px;
     }
 
-    span {
+    button {
         font-size: 18px;
         font-weight: 400;
         line-height: 21.33px;
         color: #7078C9;
+        cursor: pointer;
+        background-color: unset;
+        border: unset;
+        text-align: left;
     }
 
     .active {
