@@ -105,6 +105,7 @@
         background-color: unset;
         border: unset;
         text-align: left;
+        padding: 0;
     }
 
     .active {
