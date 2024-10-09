@@ -52,7 +52,6 @@ const boxShadowStyle = {
 
 <style lang="scss" scoped>
 .tracking-card {
-    font-family: Rubik;
     background-color: #1C204B;
     width: 255px;
     height: 199px;

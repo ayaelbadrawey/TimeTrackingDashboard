@@ -2,6 +2,7 @@
 import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import TrackingCard from '../components/TrackingCard.vue'
+import BestSalesCard from '../components/BestSalesCard.vue'
 
 const store = useStore();
 
@@ -24,7 +25,7 @@ const isLoading = computed(() => store.getters.isLoading);
         <span class="loading-spinner" v-if="isLoading">.</span>
         <div v-else class="container">
             <div class="best-sales">
-                <TrackingCard />
+                <BestSalesCard></BestSalesCard>
             </div>
             <div class="tracking">
                 <TrackingCard :background="randColors[getRandomInt(0, 5)]" v-for="product in productList"
