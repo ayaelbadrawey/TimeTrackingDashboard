@@ -11,7 +11,7 @@ const props = defineProps({
             category: '',
             price: '',
             title: '',
-            rating: {count: 0}
+            rating: { count: 0 }
         }),
     }
 });
@@ -35,13 +35,13 @@ const boxShadowStyle = {
             </svg>
         </div>
         <div class="category-content">
-            <span class="price">{{product.price}}$</span>
+            <span class="price">{{ product.price }}$</span>
             <div class="description-content">
                 <span class="description">{{ product.title }}</span>
                 <div class="stock-content">
                     <span v-if="product.rating.count > 0">InStore</span>
                     <span v-else>OutOfStore</span>
-                    <span>{{product.rating.count}}</span>
+                    <span>{{ product.rating.count }}</span>
                 </div>
             </div>
         </div>
@@ -132,6 +132,20 @@ const boxShadowStyle = {
     .tracking-card {
         width: 100%;
         margin-bottom: 50px;
+
+        .category-content {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            .description {
+                text-align: right;
+            }
+            .stock-content {
+                display: none !important;
+            }
+        }
+
     }
 }
 </style>
